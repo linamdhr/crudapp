@@ -1,0 +1,10 @@
+.login-form {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-body .form-wrapper {
+  margin-bottom: 20px;
+}

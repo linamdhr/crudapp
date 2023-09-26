@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --primary: #184890;
+  --secondary: #f5f8f9;
+  --transition: all 0.3s linear;
+  --primary-font: "Poppins", sans-serif;
+  --secondary-font: "Open Sans", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+a,
+a:hover,
+a:active {
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  font-family: var(--secondary-font);
+  background: var(--secondary);
+}
+
+p {
+  line-height: 1.5;
+  color: #000;
+}
+
+h1,
+h2,
+h3,
+h5,
+h4,
+h6 {
+  font-family: var(--primary-font);
+  color: #000;
+  font-weight: 600;
+}
+
+label {
+  font-weight: 500;
+}
+
+input:not([type="submit"]),
+textarea {
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  padding: 12px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  color: #333;
+  margin-top: 7px;
+}
+
+:focus-visible {
+  outline: 2px dotted transparent;
+}
+
+.btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  border: unset;
+  color: #fff;
+  z-index: 1;
+  background: var(--primary);
+  position: relative;
+  overflow: hidden;
+  transition: all 250ms;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #206ddf;
+  color: #fff;
+}
+.heading__title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--primary);
+  margin-top: 5px;
+  text-transform: capitalize;
+}
+.sub__title {
+  font-size: 14px;
+  color: #212121;
+  position: relative;
+  font-weight: bold;
+  text-transform: uppercase;
 }

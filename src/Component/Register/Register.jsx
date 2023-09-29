@@ -1,6 +1,6 @@
 import React from "react";
-import img from "../../Image/halo.jpg";
-import "../../Css/Login.css";
+import img from "../../Image/pluto.jpeg";
+import "../../Css/Register.css";
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import Toast from "../Toast";
@@ -8,11 +8,10 @@ import { Fetchdata } from "../Hook/getData";
 import NavbarContext from "../Context/Navbar-Context";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import AuthContext from "../Context/Auth-Context";
 
-const Login = () => {
-  const { login } = useContext(AuthContext);
+const Register = () => {
   const { baseURL } = useContext(NavbarContext);
+
   const initialvalue = { name: "", email: "", password: "" };
   const [inputData, setInputData] = useState(initialvalue);
   const [isSubmit, setIsSubmit] = useState(false);
@@ -29,26 +28,24 @@ const Login = () => {
   useEffect(() => {
     if (isSubmit) {
       const dataForm = {
+        Name: inputData.name,
         Email: inputData.email,
         Password: inputData.password,
-
-        FetchURL: `${baseURL}/api/login`,
+        FLAG: "I",
+        FetchURL: `${baseURL}/api/user`,
         Type: "POST",
       };
+
       Fetchdata(dataForm)
         .then(function (result) {
           if (result.StatusCode === 200) {
-            const postResult = result.Login[0];
-            toast.success("Login sucessful", {
+            toast.success("Registered sucessful", {
               theme: "light",
             });
-
-            setIsSubmit(false);
-
-            localStorage.setItem("token", JSON.stringify(postResult));
-            sessionStorage.setItem("token", JSON.stringify(postResult));
-            login(postResult);
-            navigate("/");
+            setTimeout(() => {
+              setIsSubmit(false);
+              navigate("/");
+            }, 3000);
           } else {
             toast.error(result.Message, {
               theme: "light",
@@ -67,20 +64,35 @@ const Login = () => {
   return (
     <>
       <Toast />
-      <div className="login-form">
+      <div className="register-form">
         <div className="wrapper container">
           <div className="row">
             <div className="col-md-6">
-              <div className="login-img">
+              <div className="register-img">
                 <img src={img} alt="" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="form__content">
                 <span className="sub__title">Hello !</span>
-                <h3 className="mb-3 heading__title">Welcome to Login Page</h3>
+                <h3 className="mb-3 heading__title">
+                  Welcome to Register Page
+                </h3>
 
-                <form className="login-body">
+                <form className="register-body">
+                  <div className="form-wrapper">
+                    <label htmlFor="name"> Name</label>
+                    <input
+                      type="text"
+                      className="uk-input"
+                      name="name"
+                      onChange={handleChange}
+                      value={inputData.name}
+                      autoComplete="off"
+                      required
+                    />
+                  </div>
+
                   <div className="form-wrapper">
                     <label htmlFor="email">Email</label>
                     <input
@@ -93,6 +105,7 @@ const Login = () => {
                       required
                     />
                   </div>
+
                   <div className="form-wrapper">
                     <label for="password">Password</label>
                     <input
@@ -105,13 +118,17 @@ const Login = () => {
                       required
                     />
                   </div>
+
                   <p>
-                    {" "}
-                    Don't have an account?
-                    <Link to="/register">register</Link>
+                    Already have an account?
+                    <Link to="/login">Login</Link>
                   </p>
                   <button className="btn" onClick={handleSubmit}>
-                    {isSubmit ? <span>Please wait..</span> : <span>Login</span>}
+                    {isSubmit ? (
+                      <span>Please wait..</span>
+                    ) : (
+                      <span>Register</span>
+                    )}
                   </button>
                 </form>
               </div>
@@ -123,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
